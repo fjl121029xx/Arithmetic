@@ -1,4 +1,4 @@
-package li.sort;
+package com.li.sort;
 
 /**
  * Java实现几种常见排序方法
