@@ -1,6 +1,6 @@
 package com.li.sort;
 
-public class Insert {
+public class InsertSort {
 
     public static void main(String[] args) {
 
