@@ -1,6 +1,6 @@
-package com.li.queue;
+package com.li.acm.stack;
 
-public class DATA4 {
+public class Data3 {
 
     public String name;
     public int age;

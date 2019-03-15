@@ -1,4 +1,4 @@
-package com.li.sort;
+package com.li.acm.sort;
 
 /**
  * Java实现几种常见排序方法

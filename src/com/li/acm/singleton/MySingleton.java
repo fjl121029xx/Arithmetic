@@ -1,4 +1,4 @@
-package com.li.singleton;
+package com.li.acm.singleton;
 
 public class MySingleton {
 

@@ -1,4 +1,4 @@
-package com.li.stack;
+package com.li.acm.stack;
 
 public class StackType {
 

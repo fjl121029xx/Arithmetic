@@ -1,4 +1,4 @@
-package com.li.sort;
+package com.li.acm.sort;
 
 public class BubbleSort {
     /**

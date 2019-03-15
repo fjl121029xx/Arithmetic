@@ -1,4 +1,4 @@
-package com.li.search;
+package com.li.acm.search;
 
 import java.util.Random;
 

@@ -1,4 +1,4 @@
-package com.li.list.sequentiallist;
+package com.li.acm.sequentiallist;
 
 /**
  * 顺序表
