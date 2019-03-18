@@ -1,5 +1,8 @@
 package com.li.designer.factory.simple;
 
+/**
+ * 建立一个工厂类，对实现了统一接口发一些进行实例的创建
+ */
 public class SimpleFactory {
 
     public static Sender produce(String type) {

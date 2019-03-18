@@ -1,0 +1,45 @@
+public V put(K key, V value) {
+        return putVal(hash(key), key, value, false, true);
+    }
+
+  //插入值， onlyIfAbsent，为真的话，就是不替换，无就插，有就不插    methods evict，表示需要调整二叉树结构 在LinkedHashMap使用
+final V putVal(int hash, K key, V value, boolean onlyIfAbsent, boolean evict) {
+        Node<K,V>[] tab; Node<K,V> p; int n, i;
+        if ((tab = table) == null || (n = tab.length) == 0)     //1 首先判断table数组的长度是否为0或table数组是否为空，即通常情况下表示刚创建一个空的HashMap时，当你调用put（K，V）方法时才会分配内存，即tab = resize()
+            n = (tab = resize()).length;
+        if ((p = tab[i = (n - 1) & hash]) == null)        //2首先判断tab[(n - 1) & hash]处是否为空,如果是代表该数组下标为[(n - 1) & hash]的位置无元素，可直接put
+            tab[i] = newNode(hash, key, value, null);              // 没有数据，就是放一个链表头节点
+        else {
+            Node<K,V> e; K k;
+            if (p.hash == hash &&  ((k = p.key) == key || (key != null && key.equals(k))))    //哈希值和equals值均同 则用新值换旧值
+                e = p;
+            else if (p instanceof TreeNode)                         //否则  判断是否需要红黑树结构
+                e = ((TreeNode<K,V>)p).putTreeVal(this, tab, hash, key, value);
+            else {                                                  //否则 为链表结构
+                for (int binCount = 0; ; ++binCount) {
+                    if ((e = p.next) == null) {
+                        p.next = newNode(hash, key, value, null);
+                        if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st
+                            treeifyBin(tab, hash);                  //把链表转为二叉树存储
+                        break;
+                    }
+                    if (e.hash == hash && ((k = e.key) == key || (key != null && key.equals(k))))//如果Hash值相同，则调用equals方法来确定是否存在该元素，则执行break语句
+                        break;//跳出for循环，执行下面的if语句，更新value的值.
+
+                    p = e;
+                }
+            }
+            if (e != null) { // existing mapping for key  // 替换操作，key一样，旧值换为新值
+                V oldValue = e.value;
+                if (!onlyIfAbsent || oldValue == null)
+                    e.value = value;
+                afterNodeAccess(e);//
+                return oldValue;
+            }
+        }
+        ++modCount;
+        if (++size > threshold)
+            resize();
+        afterNodeInsertion(evict);   //LinkedHashMap使用
+        return null;
+    }
