@@ -49,7 +49,7 @@ class Good {
                 // TODO: handle exception
             }
         this.name = name + "-生产者-" + count++;
-        System.out.println(Thread.currentThread().getName() + "生产者" + this.name);
+        System.out.println(Thread.currentThread().getName() + " 生产 " + this.name);
         flag = true;
         this.notifyAll();
     }
@@ -62,7 +62,8 @@ class Good {
             } catch (Exception e) {
                 // TODO: handle exception
             }
-        System.out.println(Thread.currentThread().getName() + "消费者" + this.name);
+        this.name = name + "-消费者-" + count--;
+        System.out.println(Thread.currentThread().getName() + " 消费 " + this.name);
         flag = false;
         this.notifyAll();
     }
