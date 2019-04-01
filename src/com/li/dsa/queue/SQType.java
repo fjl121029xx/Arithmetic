@@ -1,4 +1,4 @@
-package com.li.acm.queue;
+package com.li.dsa.queue;
 
 public class SQType {
 
