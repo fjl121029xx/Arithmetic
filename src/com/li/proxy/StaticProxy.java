@@ -85,6 +85,7 @@ public class StaticProxy {
         //UserManager userManager=new UserManagerImpl();
         UserManager userManager = new UserManagerImplProxy(new UserManagerImpl());
         userManager.addUser("1111", "张三");
+        throw new ArithmeticException();
     }
 }
 
